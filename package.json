@@ -6,7 +6,9 @@
     "react-scripts": "0.9.5"
   },
   "dependencies": {
+    "moment": "^2.18.1",
     "react": "^15.5.4",
+    "react-big-calendar": "intljusticemission/react-big-calendar",
     "react-dom": "^15.5.4"
   },
   "scripts": {
