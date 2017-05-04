@@ -16,21 +16,21 @@ class App extends Component {
       desc: 'Sports massage with Sue'
     }],
     massageTypes: [
-      {name: 'Registered Massage Therapy', id: 1},
-      {name: 'Sports Massage', id: 2},
-      {name: 'Hot Stone Massage', id: 3},
-      {name: 'Neuromuscular Integration and Structural Alignment (N.I.S.A.)', id: 4},
-      {name: 'Lymph Drainage', id: 5},
-      {name: 'Shiatsu Therapy', id: 6},
-      {name: 'Thai Massage', id: 7},
-      {name: 'Acupuncture', id: 8},
-      {name: 'Cosmetic Acupuncture', id: 9},
-      {name: 'Craniosacral Therapy', id: 10},
-      {name: 'Aromatherapy', id: 11},
-      {name: 'Reflexology', id: 12}
+      {name: 'Registered Massage Therapy', restrictedDurations: [], id: 1},
+      {name: 'Sports Massage', restrictedDurations: [], id: 2},
+      {name: 'Hot Stone Massage', restrictedDurations: ['60', '90'], id: 3},
+      {name: 'Neuromuscular Integration and Structural Alignment (N.I.S.A.)', restrictedDurations: [], id: 4},
+      {name: 'Lymph Drainage', restrictedDurations: [], id: 5},
+      {name: 'Shiatsu Therapy', restrictedDurations: [], id: 6},
+      {name: 'Thai Massage', restrictedDurations: [], id: 7},
+      {name: 'Acupuncture', restrictedDurations: [], id: 8},
+      {name: 'Cosmetic Acupuncture', restrictedDurations: [], id: 9},
+      {name: 'Craniosacral Therapy', restrictedDurations: [], id: 10},
+      {name: 'Aromatherapy', restrictedDurations: [], id: 11},
+      {name: 'Reflexology', restrictedDurations: [], id: 12}
     ],
     selectedMassageType: 1,
-      treatmentDuration : [
+      treatmentDurations : [
           {time: '30 minutes', id: '30'},
           {time: '60 minutes', id: '60'},
           {time: '90 minutes', id: '90'},
@@ -46,10 +46,10 @@ class App extends Component {
   render() {
     return (
       <div className="app">
-        <SideMenuLeft massageTypes={this.state.massageTypes}
+        <SideMenuLeft massageTypes={this.state.massageTypes.filter(mType => mType.restrictedDurations.length ? mType.restrictedDurations.includes(this.state.selectedTreatmentDuration) : true)}
                       massageTypeSelected={this.handleMassageTypeSelected}
                       selectedMassageType={this.state.selectedMassageType}
-                      treatmentDuration={this.state.treatmentDuration}
+                      treatmentDurations={this.state.treatmentDurations.filter(dType => this.state.massageTypes.find(mt => mt.id === this.state.selectedMassageType).restrictedDurations.length ? this.state.massageTypes.find(mt => mt.id === this.state.selectedMassageType).restrictedDurations.includes(dType.id) : true )}
                       selectedDurationTime={this.state.selectedTreatmentDuration}
                       durationSelected={this.handleDurationSelected}/>
         <Schedular bookings={this.state.allBookings}/>
