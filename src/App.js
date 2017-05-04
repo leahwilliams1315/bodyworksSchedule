@@ -13,7 +13,7 @@ class App extends Component {
       'title': 'Massage With Sue',
       'start': moment().startOf('day').hour(13).minute(0).toDate(),
       'end': moment().startOf('day').hour(14).minute(0).toDate(),
-      desc: 'Sports massage with Sue',
+      desc: 'Sports massage with Sue'
     }],
     massageTypes: [
       {name: 'Registered Massage Therapy', id: 1},
@@ -30,16 +30,28 @@ class App extends Component {
       {name: 'Reflexology', id: 12}
     ],
     selectedMassageType: 1,
+      treatmentDuration : [
+          {time: '30 minutes', id: '30'},
+          {time: '60 minutes', id: '60'},
+          {time: '90 minutes', id: '90'},
+          {time: '120 minutes', id: '120'}
+      ],
+      selectedTreatmentDuration: '60'
   };
 
   handleMassageTypeSelected = (selectedType) => this.setState({selectedMassageType: selectedType});
+
+  handleDurationSelected = (selectedDuration) => this.setState({selectedTreatmentDuration: selectedDuration});
 
   render() {
     return (
       <div className="app">
         <SideMenuLeft massageTypes={this.state.massageTypes}
                       massageTypeSelected={this.handleMassageTypeSelected}
-                      selectedMassageType={this.state.selectedMassageType}/>
+                      selectedMassageType={this.state.selectedMassageType}
+                      treatmentDuration={this.state.treatmentDuration}
+                      selectedDurationTime={this.state.selectedTreatmentDuration}
+                      durationSelected={this.handleDurationSelected}/>
         <Schedular bookings={this.state.allBookings}/>
       </div>
     );
