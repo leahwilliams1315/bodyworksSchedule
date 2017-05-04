@@ -8,7 +8,7 @@
   "dependencies": {
     "moment": "^2.18.1",
     "react": "^15.5.4",
-    "react-big-calendar": "intljusticemission/react-big-calendar",
+    "react-big-calendar": "^0.14.0",
     "react-dom": "^15.5.4"
   },
   "scripts": {
