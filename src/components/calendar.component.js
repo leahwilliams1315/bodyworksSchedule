@@ -7,8 +7,8 @@ import moment from 'moment';
 BigCalendar.momentLocalizer(moment); // or globalizeLocalizer
 
 
-export default props => (
+export default ({bookings}) => (
   <BigCalendar
     style={{height: '400px'}}
-    events={[]}
+    events={bookings}
 />);
